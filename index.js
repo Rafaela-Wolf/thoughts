@@ -12,6 +12,12 @@ const conn = require('./db/conn');
 const Thought = require('./models/Thoughts');
 const User = require('./models/User');
 
+// Importando as rotas
+const thoughtsRoutes = require('./routes/thoughtsRoutes');
+
+// Importando controllers
+const ThoughtController = require('./controllers/ThoughtController');
+
 // template engine
 app.engine('handlebars', exphbs.engine());
 app.set('view engine', 'handlebars');
@@ -60,6 +66,10 @@ app.use((req, res, next) => {
 
     next()
 })
+
+// routes
+app.use('/thoughts', thoughtsRoutes)
+app.use('/', ThoughtController.showThoughts)
 
 conn 
     .sync()
