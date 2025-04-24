@@ -14,6 +14,7 @@ const User = require('./models/User');
 
 // Importando as rotas
 const thoughtsRoutes = require('./routes/thoughtsRoutes');
+const authRoutes = require('./routes/authRoutes');
 
 // Importando controllers
 const ThoughtController = require('./controllers/ThoughtController');
@@ -69,6 +70,8 @@ app.use((req, res, next) => {
 
 // routes
 app.use('/thoughts', thoughtsRoutes)
+app.use('/', authRoutes)
+
 app.use('/', ThoughtController.showThoughts)
 
 conn 
