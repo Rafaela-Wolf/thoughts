@@ -34,7 +34,7 @@ module.exports = class AuthController {
 
         // create a password
         const salt = bcrypt.genSaltSync(10);
-        const hashedPassword = bcript.hashSync(password, salt);
+        const hashedPassword = bcrypt.hashSync(password, salt);
 
         const user = {
             name, 
@@ -53,10 +53,13 @@ module.exports = class AuthController {
             req.session.save(() => {
                 res.redirect('/');
             });
-
-            res.redirect('/');
         } catch (error) {
             console.log(error);
         }
+    }
+
+    static logout(req, res) {
+        req.session.destroy();
+        res.redirect('/login');
     }
 }
