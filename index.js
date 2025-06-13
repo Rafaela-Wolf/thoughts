@@ -72,7 +72,7 @@ app.use((req, res, next) => {
 app.use('/thoughts', thoughtsRoutes)
 app.use('/', authRoutes)
 
-app.use('/', ThoughtController.showThoughts)
+app.get('/', ThoughtController.showThoughts)
 
 conn 
     .sync()

@@ -162,7 +162,7 @@ form input[type='submit']:hover,
     margin: 0 0.5em;
 }
 
-/* CREATE / EDIT FORM */
+/* CREATE AND EDIT FORM */
 .thought-form-container a {
     color: #f6982d;
 }

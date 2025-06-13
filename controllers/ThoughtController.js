@@ -1,3 +1,6 @@
+const Thought = require('../models/Thoughts');
+const User = require('../models/User');
+
 module.exports = class ThoughtController {
     static async showThoughts(req, res) {
         res.render('thoughts/home')
@@ -5,7 +8,7 @@ module.exports = class ThoughtController {
 
     static async dashboard(req, res) {
 
-        const userId = req.session.userid
+        const userId = req.session.userid;
 
         const user = await User.findOne({
             where: {
@@ -19,13 +22,13 @@ module.exports = class ThoughtController {
             res.redirect('/login')
         }
 
-        const thoughts = user.Thoughts.map((result) => result.dataValues)
+        const thoughts = user.Thoughts.map((result) => result.dataValues);
 
-        let emptyThoughts = false
+        let emptyThoughts = false;
 
         if(thoughts.length === 0) {
-            emptyThoughts = true
-        }
+            emptyThoughts = true;
+        };
 
         res.render('thoughts/dashboard', { thoughts, emptyThoughts })
     }
@@ -42,7 +45,7 @@ module.exports = class ThoughtController {
         }
 
         try {
-            await thought.create(thought)
+            await Thought.create(thought)
 
             req.flash('message', "Pensamento criado com sucesso!")
 
@@ -59,7 +62,7 @@ module.exports = class ThoughtController {
         const UserId = req.session.id
 
         try {
-            await thought.destroy({ where: { id: id, UserId: UserId }})
+            await Thought.destroy({ where: { id: id, UserId: UserId }})
 
             req.flash('message', "Pensamento removido com sucesso!")
 

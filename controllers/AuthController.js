@@ -18,7 +18,7 @@ module.exports = class UserController {
         message: 'Usuário não encontrado!',
       })
 
-      return
+      return;
     }
 
     // compare password
@@ -29,7 +29,7 @@ module.exports = class UserController {
         message: 'Senha inválida!',
       })
 
-      return
+      return;
     }
 
     // auth user
@@ -54,7 +54,7 @@ module.exports = class UserController {
       req.flash('message', 'As senhas não conferem, tente novamente!')
       res.render('auth/register')
 
-      return
+      return;
     }
 
     // email validation
@@ -64,7 +64,7 @@ module.exports = class UserController {
       req.flash('message', 'O e-mail já está em uso!')
       res.render('auth/register')
 
-      return
+      return;
     }
 
     const salt = bcrypt.genSaltSync(10)
